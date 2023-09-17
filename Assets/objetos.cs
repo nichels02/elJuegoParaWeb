@@ -1,11 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class objetos : MonoBehaviour
 {
     [SerializeField] Rigidbody2D MyRigidbody2D;
     [SerializeField] float velocidad;
+    GameObject controlador;
+
+
+    float tiempo = 0;
+
+    public GameObject ElControlador
+    {
+        get { return controlador; }
+        set { controlador = value; }
+    }
+
+
+    public float Velocidad
+    {
+        get { return velocidad; }
+        set { velocidad = value; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +35,7 @@ public class objetos : MonoBehaviour
     void Update()
     {
         
+        
     }
     private void FixedUpdate()
     {
@@ -25,7 +45,14 @@ public class objetos : MonoBehaviour
     {
         if (collision.gameObject.tag == "eliminador")
         {
-            Destroy(gameObject);
+            if (gameObject.tag == "daño")
+            {
+                controlador.GetComponent<controlador>().eliminar_daño();
+            }
+            else if(gameObject.tag == "punto")
+            {
+                controlador.GetComponent<controlador>().eliminar_punto();
+            }
         }
     }
 }

@@ -45,3 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: objetos
+    uniqueID: 3150983027
+    locked: 0
+  - name: juego
+    uniqueID: 2548045525
+    locked: 0
