@@ -155,7 +155,7 @@ public class controlador : MonoBehaviour
         
         objetosDeDaño.RemoveFirst();
 
-        objetosDeDañoActivo.Last.Value.gameObject.transform.position = new Vector3(random, 6, 0);
+        objetosDeDañoActivo.Last.Value.gameObject.transform.position = new Vector3(random, 7, 0);
         objetosDeDañoActivo.Last.Value.gameObject.SetActive(true);
     }
     public void eliminar_daño()
@@ -195,7 +195,7 @@ public class controlador : MonoBehaviour
 
         objetosDeDaño.RemoveFirst();
 
-        objetosDePuntoActivo.Last.Value.gameObject.transform.position = new Vector3(random, 6, 0);
+        objetosDePuntoActivo.Last.Value.gameObject.transform.position = new Vector3(random, 7, 0);
         objetosDePuntoActivo.Last.Value.gameObject.SetActive(true);
     }
     public void eliminar_punto()
