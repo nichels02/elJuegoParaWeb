@@ -1441,9 +1441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee92e6211d009134f9afd3877124977e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjetoA: {fileID: 2272557317542668808, guid: 2b1de8695a126274c8010f50a67d5e95, type: 3}
-  pos: {x: 0, y: 3.5}
-  rotacion: {x: 0, y: 0, z: 0, w: 0}
+  ElJugador: {fileID: 401584350}
 --- !u!4 &2026101825
 Transform:
   m_ObjectHideFlags: 0

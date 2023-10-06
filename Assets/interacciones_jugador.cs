@@ -10,6 +10,7 @@ public class interacciones_jugador : MonoBehaviour
     [SerializeField] float puntaje=0;
     [SerializeField] TMP_Text text_puntaje;
     [SerializeField] TMP_Text text_vida;
+    bool laHabilidadEstaPrendida = false;
 
     GameObject controlador;
 
@@ -17,6 +18,12 @@ public class interacciones_jugador : MonoBehaviour
     {
         get { return controlador; }
         set { controlador = value; }
+    }
+
+    public bool LaHabilidadEstaPrendida
+    {
+        get { return laHabilidadEstaPrendida; }
+        set { laHabilidadEstaPrendida = value; }
     }
 
     // Start is called before the first frame update
@@ -39,20 +46,23 @@ public class interacciones_jugador : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "daño")
+        if (laHabilidadEstaPrendida == false)
         {
-            Debug.Log("holaaaaaaaaaaaaaa");
-            vida -= 1;
-            text_vida.text = "Vida: " + vida;
-
-            if (vida <= 0)
+            if (collision.gameObject.tag == "daño")
             {
-                controlador.GetComponent<controlador>().Termino = true;
-                Destroy(gameObject);
-                text_vida.text = "Vida: 0";
-            } 
+                Debug.Log("holaaaaaaaaaaaaaa");
+                vida -= 1;
+                text_vida.text = "Vida: " + vida;
+
+                if (vida <= 0)
+                {
+                    controlador.GetComponent<controlador>().Termino = true;
+                    Destroy(gameObject);
+                    text_vida.text = "Vida: 0";
+                }
+            }
         }
-        else if (collision.gameObject.tag == "punto")
+        if (collision.gameObject.tag == "punto")
         {
             ElControlador.GetComponent<controlador>().eliminar_punto();
             puntaje += 100;
