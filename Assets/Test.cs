@@ -1,22 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Test : MonoBehaviour
 {
     [SerializeField] GameObject ElJugador;
-    int cantidadDeHabilidades;
+    [SerializeField] TMP_Text texto;
+    int cantidadDeHabilidades=3;
 
     bool lahabilidad;
     bool aparecerYdesaparecer;
     float duracion;
-    float velocidadDeCambio=50;
+    float velocidadDeCambio=3;
     Color jugadorColor;
+    Color jugadorColorGuardado;
 
     // Start is called before the first frame update
     void Start()
     {
-        crear_mensaje();
+        
     }
 
     // Update is called once per frame
@@ -33,7 +36,7 @@ public class Test : MonoBehaviour
                 jugadorColor.a -= Time.deltaTime * velocidadDeCambio;
                 ElJugador.GetComponent<SpriteRenderer>().color = jugadorColor;
                 Debug.Log(jugadorColor.a);
-                if (jugadorColor.a <= 0)
+                if (jugadorColor.a <= 0.2)
                 {
                     aparecerYdesaparecer = false;
                 }
@@ -44,15 +47,16 @@ public class Test : MonoBehaviour
                 jugadorColor.a += Time.deltaTime * velocidadDeCambio;
                 ElJugador.GetComponent<SpriteRenderer>().color = jugadorColor;
                 Debug.Log(jugadorColor.a);
-                if (jugadorColor.a >= 200)
+                if (jugadorColor.a >= 0.8)
                 {
                     aparecerYdesaparecer = true;
                 }
             }
-            if (duracion > 10000)
+            if (duracion > 8)
             {
                 ElJugador.GetComponent<interacciones_jugador>().LaHabilidadEstaPrendida = false;
                 lahabilidad = false;
+                ElJugador.GetComponent<SpriteRenderer>().color = jugadorColorGuardado;
             }
         }
         
@@ -64,34 +68,22 @@ public class Test : MonoBehaviour
 
     void crear_mensaje()
     {
-        lahabilidad = true;
-        aparecerYdesaparecer = true;
-    }
-
-
-
-    void aparecer()
-    {
-        Debug.Log("aparecer");
-        Color jugadorColor = ElJugador.GetComponent<SpriteRenderer>().color;
-        jugadorColor.a -= Time.deltaTime * velocidadDeCambio; 
-        ElJugador.GetComponent<SpriteRenderer>().color = jugadorColor;
-        if (jugadorColor.a <= 50)
+        if (cantidadDeHabilidades > 0)
         {
-            aparecerYdesaparecer = false;
-        }
-    }
-    
-    
-    void desaparecer()
-    {
-        Debug.Log("desaparecer");
-        Color jugadorColor = ElJugador.GetComponent<SpriteRenderer>().color;
-        jugadorColor.a += Time.deltaTime * velocidadDeCambio;
-        ElJugador.GetComponent<SpriteRenderer>().color = jugadorColor;
-        if (jugadorColor.a >= 200)
-        {
+            duracion = 0;
+            cantidadDeHabilidades -= 1;
+            texto.text = "Power up: " + cantidadDeHabilidades;
+            lahabilidad = true;
             aparecerYdesaparecer = true;
+
+
+
+            jugadorColor = ElJugador.GetComponent<SpriteRenderer>().color;
+            jugadorColorGuardado = ElJugador.GetComponent<SpriteRenderer>().color;
+            jugadorColor = Color.green;
+            ElJugador.GetComponent<SpriteRenderer>().color = jugadorColor;
         }
     }
+
+
 }
