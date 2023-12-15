@@ -51,3 +51,6 @@ TagManager:
   - name: juego
     uniqueID: 2548045525
     locked: 0
+  - name: fondo
+    uniqueID: 2078384145
+    locked: 0
